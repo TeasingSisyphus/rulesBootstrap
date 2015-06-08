@@ -1,0 +1,71 @@
+<body ng-app='rules'>
+    <div ng-controller='rulesController as rules'>
+        <div class='container-fluid'>
+
+
+            <div class="row-fluid">
+                <div class="span12">
+                    The Top
+                    <div class="row-fluid">
+                        <div class="span6">
+
+                            <p>Rules for Cuttle</p>
+                            <p>Cuttle is a multiplayer battle card game. You win the game by having 21 OR MORE points at the end of any player's turn. On your turn, you may play one card, or draw one card (if you choose to draw, that takes your turn). </p>
+
+                            <p>Ways to play cards on your turn:</p>
+                            There are Four ways to play a card on your turn. 
+
+                           <p>Points:
+                           Any numbered card (Ace-Ten) can be played out in front of you for points. Each card is worth as many points as the number on the card (an Ace is worth one point, a Ten is worth ten). You have as many point as the sum total of all of the point cards you have in front of you. You win if that total is 21, or more at the end of any player's turn. </p>
+
+                           <p>Scuttling:
+                           If a player already has a point card on their side of the field, you may scuttle it, by placing a higher-valued point card on top if it, then placing both point cards in the scrap pile (the scap pile is where all destroyed cards are stored). Your card must either be a higher rank (number) than the card you are scuttling (face cards can't be scuttled, or used to scuttle), or it must be the same rank and a higher suit. The suit order is reverse-alphabetical: Spades > Hearts > Diamonds > Clubs. You can for example, scuttle the Eight of Diamonds using your Eight of Hearts, or using any Nine or Ten. You cannot however, scuttle your opponent's Eight of Diamonds with either the Eight of Clubs, or any number card 7, or lower.</p>
+
+
+                           <p>Non-Point Permanent:
+                           Several cards can be played as permanent cards (cards that stay out on the field until they are destroyed) that provide no points, but instead provide other auxilliary benefits. This is the only way to play a face card. Each non-point permanent provides it's own unique benefit as long as it remains in play:</p>
+
+                           <p>Jacks: Jacks may be played from your hand on top of a POINT card that is already on the field. When you do so, you choose a player (other than the point card's previous owner) and that player gains control of the point card as long as the jack remains on top of the point card. You can play a jack on top of a point card that has already been jacked to steal it again. If all the jacks on a point card are destroyed, it returns to its original owner. If the top jack on a point card is destroyed it returns to where it was after the previous jack stole it. You may NOT play a jack on a Non-Point Permanent (any face cards, or a glasses eight).</p>
+
+                           <p>Queens: Queens make all of your other cards (not the queen, herself) untargetable by friendly and enemy cards. Targetting is when a card is played to apply a unique effect to an INDIVIDUAL card. It protects against both of the One-Off Effects of Two's (destroying an individual non-point permanent AND countering and individual One-Off Effect) and Jacks. Notably, <a class='clickable' id='queenScuttle' ng-click='rules.chooseRule(0)'>Queens do NOT protect against scuttling,</a> <a class='clickable' id='queenGlobal' ng-click='rules.chooseRule(1)'>or agains Aces, or Sixes</a></p>
+
+                           <p>Kings: Kings reduce the number of points needed to win. With One King, <a class='clickable' id='oneKing'>a player needs 14 points to win,</a> with two Kings, <a class='clickable' id='twoKings'>a player needs 10 points to win</a> with three Kings, <a class='clickable' id='threeKings'>7 points,</a> and with all four Kings, <a class='clickable' id='fivePoints'>only 5 points to win.</a></p>
+
+                           <p>One-Off Effects: Players may play any number card, except for a ten, or an eight, as a One-Off effect. A One-Off effect is a unique effect that happens once. After the effect resolves (finishes), the card used to play the effect is placed in the scrap pile. Only cards in your hand may be played as a One-Off effect.</p>
+
+                           <p>Each number card has it's own effect:
+                            Ace: Destroy all point cards on the field (for all players)
+                            Two: <a class='clickable' ng-click='rules.chooseRule(2)'>Destroy target non-point permanent</a> OR <a class='clickable' ng-click='rules.chooseRule(3)'>Counter target One-Off effect.</a>This may be played at ANY TIME (it is the only card that can be played on your opponent's turn) to prevent a One-Off effect that any player has JUST played from happening.
+                           </p>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="span6" id='details'>
+
+                            <div class='row-fluid'>
+                                <div class='span4'></div>
+                                <img ng-src='{{rules.img}}' class='span8' id='card'></img>
+                            </div>
+
+                            <br>
+                            <div class="row-fluid">
+                                <button href class="span2 btn-primary" ng-click='tab=1'>Explanation</button>
+                                <div class='span8'></div>
+                                <button hfref class="span2 btn-primary" ng-click='tab=2'>Dissucssion</button>
+                                <div class='row-fluid'>
+                                    <div ng-show='tab === 1' class='panel' id='explanationPanel'>
+                                        Reason:
+                                        {{rules.explanations[rules.index]}}
+                                    </div>
+                                    <div ng-show='tab ===2' class='panel' id='disscussionPanel'>Discussion:</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
